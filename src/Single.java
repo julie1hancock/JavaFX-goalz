@@ -23,7 +23,7 @@ public class Single {
                 "City Planner of the Shire",
                 "The Shire, Middle Earth",
                 "Age: 21-32",
-                "I'm Ellen. I am the City Planner for Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris id quam feugiat, dictum magna pulvinar, molestie libero. Nunc porta quam quis sapien mattis, laoreet vulputate est luctus. Nunc a mauris arcu. Praesent efficitur efficitur lectus nec imperdiet. Proin et sapien at lectus interdum blandit. ",
+                "I'm Ellen. I am the City Planner for The Shire Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris id quam feugiat, dictum magna pulvinar, molestie libero. Nunc porta quam quis sapien mattis, laoreet vulputate est luctus. Nunc a mauris arcu. Praesent efficitur efficitur lectus nec imperdiet. Proin et sapien at lectus interdum blandit. ",
                 "Healthy Sleeping Habits, Marathon Training, Keto Dieting, Retirement Saving, Journaling"
         );
         addToAllUsers();
@@ -37,7 +37,8 @@ public class Single {
                         "January 7, 2020",
                         "Feb 1, 2020",
                         "MWF",
-                        "This is a cool goal #1."
+                        "This is a cool goal #1.",
+                        new int[]{2,0,2,1,2,3,3}
                 )
         );
         loggedInGoals.add(new Goal(
@@ -45,7 +46,8 @@ public class Single {
                         "October 23, 2019",
                         "May 1, 2020",
                         "SMWF",
-                        "This is a cool goal #2."
+                        "This is a cool goal #2.",
+                        new int[]{1,0,2,1,2,1,3}
                 )
         );
         loggedInGoals.add(new Goal(
@@ -53,7 +55,8 @@ public class Single {
                         "March 14, 2015",
                         "May 5, 2020",
                         "SMWF",
-                        "This is a cool goal #3."
+                        "This is a cool goal #3.",
+                        new int[]{2,0,2,1,2,3,3}
                 )
         );
         loggedInGoals.add(new Goal(
@@ -61,7 +64,8 @@ public class Single {
                         "Feb 7, 2020",
                         "Feb 22, 2020",
                         "SMTWThFS",
-                        "This is a cool goal #4."
+                        "This is a cool goal #4.",
+                        new int[]{1,2,1,1,2,3,3}
                 )
         );
         loggedInGoals.add(new Goal(
@@ -69,14 +73,15 @@ public class Single {
                         "March 7, 2019",
                         "April 1, 2020",
                         "MWThS",
-                        "This is a cool goal #5."
+                        "This is a cool goal #5.",
+                new int[]{1,3,3,3,3,3,3}
                 )
         );
-        loggedInGoals.add(new Goal("a1","b1","c1","d1","e1"));
-        loggedInGoals.add(new Goal("a2","b2","c2","d2","e2"));
-        loggedInGoals.add(new Goal("a3","b3","c3","d3","e3"));
-        loggedInGoals.add(new Goal("a4","b4","c4","d4","e4"));
-        loggedInGoals.add(new Goal("a5","b5","c5","d5","e5"));
+        loggedInGoals.add(new Goal("a1","b1","c1","d1","e1",new int[]{1,3,3,3,3,3,3}));
+        loggedInGoals.add(new Goal("a2","b2","c2","d2","e2",new int[]{1,3,3,3,3,3,3}));
+        loggedInGoals.add(new Goal("a3","b3","c3","d3","e3",new int[]{1,3,3,3,3,3,3}));
+        loggedInGoals.add(new Goal("a4","b4","c4","d4","e4",new int[]{1,3,3,3,3,3,3}));
+        loggedInGoals.add(new Goal("a5","b5","c5","d5","e5",new int[]{1,3,3,3,3,3,3}));
     }
 
     private void addToAllPosts() {

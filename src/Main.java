@@ -3,13 +3,17 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Box;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.w3c.dom.css.Rect;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Main extends Application {
@@ -37,7 +41,7 @@ public class Main extends Application {
         Single.getInstance().init();
         window = primaryStage;
         window.setTitle("Goalz");
-        setup(getHome(), "Home");
+        setup(getSingleGoalView(Single.getInstance().loggedInGoals.get(0)), "Home"); //TODO home
     }
 
     private void setup(GridPane body, String sHeader) {
@@ -134,14 +138,102 @@ public class Main extends Application {
         edit.setOnAction((event) ->{
             setup(getSingleGoalEdit(goal), "Edit Goal");
         });
-
         grid.add(edit,0,5);
+        Button view = new Button("View");
+        view.setOnAction((event) ->{
+            setup(getSingleGoalView(goal), "Single Goal");
+        });
+        grid.add(view,1,5);
 
         Line line = new Line();
         line.setStartX(0);
         line.setEndX(700);
 
         grid.add(line,0,6,2,1);
+        return grid;
+    }
+
+    private GridPane getSingleGoalView(Goal goal) {
+        GridPane grid = new GridPane();
+        grid.add(new Text("Goal Title: " + goal.goalTitle),0,0);
+        grid.add(new Text("Start Date: " + goal.startDate),0,1);
+        grid.add(new Text("End Date: " + goal.endDate),0,2);
+        grid.add(new Text("Frequency: " + goal.frequency),0,3);
+        grid.add(new Text("Description: " + goal.description),0,4);
+
+
+        String dateString = LocalDateTime.now().toLocalDate().toString();
+        grid.add(new Text(" "),0,5);
+        grid.add(new Text("Week of " + dateString), 0,6);
+
+        Text sunday = new Text("Sunday: " + goal.report(0));
+        Text monday = new Text("Monday: " + goal.report(1));
+        Text tuesday = new Text("Tuesday: " + goal.report(2));
+        Text wednesday = new Text("Wednesday: " + goal.report(3));
+        Text thursday = new Text("Thursday: " + goal.report(4));
+        Text friday = new Text("Friday: " + goal.report(5));
+        Text saturday = new Text("Saturday: " + goal.report(6));
+
+        grid.add(sunday,0,7);
+        grid.add(monday,0,8);
+        grid.add(tuesday,0,9);
+        grid.add(wednesday,0,10);
+        grid.add(thursday,0,11);
+        grid.add(friday,0,12);
+        grid.add(saturday,0,13);
+
+
+        Color fillColor = Color.rgb(0xFF,0xFF,0x00);
+        Color borderColor = Color.rgb(0,0,0xFF);
+//        GridPane grid1 = new GridPane();
+//        Rectangle rect1 = new Rectangle(100,100);
+//        rect1.setFill(fillColor);
+//        rect1.setStroke(borderColor);
+//        grid1.add(rect1, 0,0);
+//        grid1.add(new Text("Week of 1/26/20"),0,0);
+
+//        GridPane grid2 = new GridPane();
+//        Rectangle rect2 = new Rectangle(100,100);
+//        rect2.setFill(fillColor);
+//        rect2.setStroke(borderColor);
+//        grid2.add(rect2, 0,0);
+//        grid2.add(new Text("Sunday"),0,0);
+//        Line line2 = new Line();
+//        line2.setStartX(0);
+//        line2.setEndX(100);
+//        line2.setFill(Color.rgb(0xff,0x00,0x00));
+//        grid2.add(line2,0,1);
+//        grid2.add(new Text("X"),0,2);
+
+//        Line line2 = new Line();
+//        line2.setStartX(0);
+//        line2.setEndX(100);
+//
+//        VBox box2 = new VBox();
+//        box2.setPadding(new Insets(25,25,25,25));
+//        box2.setBorder(new Border(
+//                new BorderStroke(
+//                        borderColor,borderColor,borderColor,borderColor,
+//                        BorderStrokeStyle.SOLID,BorderStrokeStyle.SOLID,BorderStrokeStyle.SOLID,BorderStrokeStyle.SOLID,
+//                        null,BorderWidths.FULL,new Insets(25,25,25,25)))
+//        );
+//        box2.setSpacing(10);
+//        box2.getChildren().addAll(
+//                new Text("Sunday"),
+//                line2,
+//                new Text("X")
+//        );
+//
+////        week.add(grid1,0,0);
+//        week.add(box2,1,0);
+//        week.add(grid3,0,2);
+//        week.add(grid4,0,3);
+//        week.add(grid5,1,0);
+//        week.add(grid6,1,1);
+//        week.add(grid7,1,2);
+//        week.add(grid8,1,3);
+
+//        grid.add(week,0,5);
         return grid;
     }
 
@@ -200,7 +292,8 @@ public class Main extends Application {
                     editStartDate.getText(),
                     editEndDate.getText(),
                     editFrequency.getText(),
-                    editDescription.getText()
+                    editDescription.getText(),
+                    new int[]{3,3,3,3,3,3,3}
             );
 
             if(finalIsNewGoal){
@@ -216,10 +309,6 @@ public class Main extends Application {
         return grid;
     }
 
-    //TODO
-//    private GridPane getCommunityFeed(String communityName){
-//        return null;
-//    }
 
     private GridPane getFeed() {
         GridPane grid = new GridPane();
